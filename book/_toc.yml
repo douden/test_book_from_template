@@ -8,11 +8,11 @@ parts:
       sections:
       - file: some_content/text_and_code.ipynb
     - file: 'Chapter1/intro.md'
-        sections:
-          - file: 'Chapter1/Vectors.md'
-          - file: 'Chapter1/Inner_Product.md'
-          - file: 'Chapter1/Cross_Product.md'
-          - file: 'Chapter1/Lines_and_Planes.md'
+      sections:
+      - file: 'Chapter1/Vectors.md'
+      - file: 'Chapter1/Inner_Product.md'
+      - file: 'Chapter1/Cross_Product.md'
+      - file: 'Chapter1/Lines_and_Planes.md'
     - file: references.md
     - file: changelog.md
     - file: credits.md
