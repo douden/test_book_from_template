@@ -6,3 +6,7 @@
 	path = book/external/Sphinx-Grasple-public
 	url = https://github.com/TeachBooks/Sphinx-Grasple-public.git
 	branch = manual_docs
+[submodule "book/external/dummy_submodule"]
+	path = book/external/dummy_submodule
+	url = https://github.com/douden/dummy_submodule.git
+	branch = main
