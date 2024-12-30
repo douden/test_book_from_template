@@ -22,7 +22,7 @@ sphinx:
     # favicons: {"rel": "icon", "href": "TB_favicon.ico"}
     html_theme_options:
       logo: {
-        text: "Original branch",
+        text: "Duplicate branch",
         image_light: "TB_logo.png",
         image_dark: "TB_logo_dark.png"
       }
