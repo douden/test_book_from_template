@@ -1,0 +1,8 @@
+[submodule "book/external/Sphinx-TUDelft-theme"]
+	path = book/external/Sphinx-TUDelft-theme
+	url = https://github.com/TeachBooks/Sphinx-TUDelft-theme.git
+	branch = Manual
+[submodule "book/external/Sphinx-Grasple-public"]
+	path = book/external/Sphinx-Grasple-public
+	url = https://github.com/TeachBooks/Sphinx-Grasple-public.git
+	branch = manual_docs

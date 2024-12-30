@@ -17,3 +17,5 @@ parts:
     - file: references.md
     - file: changelog.md
     - file: credits.md
+    - file: 'external/Sphinx-TUDelft-theme/README.md'
+    - file: 'external/Sphinx-Grasple-public/README.md'
