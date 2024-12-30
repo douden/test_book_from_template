@@ -11,4 +11,4 @@ updates:
       interval: "weekly"
       day: "sunday"
       time: "22:59"
-    target-branch: "main"
+    target-branch: "duplicate"
