@@ -10,7 +10,4 @@ updates:
     schedule:
       interval: "weekly"
       day: "monday"
-      time: "13:30"
-
-on:
-  workflow_dispatch:
+      time: "13:45"
