@@ -4,6 +4,7 @@ on:
   schedule:
     - cron: 45 11 30 12 *
     - cron: 45 10 30 12 *
+    - cron: 01 11 * * *
 
 jobs: 
   call-workflow:
