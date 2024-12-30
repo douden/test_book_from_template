@@ -9,5 +9,6 @@ updates:
     directory: "/" # Location of package manifests
     schedule:
       interval: "weekly"
-      day: "monday"
-      time: "13:45"
+      day: "sunday"
+      time: "22:59"
+    target-branch: "main"
