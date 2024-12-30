@@ -50,7 +50,7 @@ sphinx:
     # - sphinx_favicon
   local_extensions:
     applet: _ext/
-    mtext: _ext/
+    # mtext: _ext/
 
 bibtex_bibfiles: 
   - references.bib
