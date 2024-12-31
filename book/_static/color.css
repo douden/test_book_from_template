@@ -1,0 +1,19 @@
+:root {
+    --newcolor-light: rgb(111, 29, 119);
+    --newcolor-dark: rgb(255, 167, 255);
+    --newcolor: var(--newcolor-light);
+}
+
+html[data-theme="dark"] {
+    --newcolor: var(--newcolor-dark);
+}
+
+.newcolor {color: var(--newcolor);}
+
+.newcolor-same {color: var(--newcolor-light);}
+
+.newcolor-filter {color: var(--newcolor-light);}
+
+html[data-theme="dark"] .newcolor-filter {
+    filter:  invert(1) hue-rotate(180deg) saturate(1.5);
+}

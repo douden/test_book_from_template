@@ -20,3 +20,4 @@ parts:
     - file: 'external/Sphinx-TUDelft-theme/README.md'
     - file: 'external/Sphinx-Grasple-public/README.md'
     - file: 'external/dummy_submodule/README.md'
+    - file: 'color.md'
