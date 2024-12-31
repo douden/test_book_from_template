@@ -39,7 +39,7 @@ sphinx:
 
 ## Using CSS
 
-::::{remark}
+::::{note}
 This method allows the use of the new color(s) in _any_ part of the book.
 ::::
 
