@@ -39,17 +39,17 @@ sphinx:
 
 ## Using CSS
 
-::::{note}
-This method allows the use of the new color(s) in _any_ part of the book.
-::::
-
 In this case one has three options:
 
 1. Light and dark mode the same color
-1. Light and dark mode different colors using global color definitions
-1. Light and dark mode different colors using local color filters
+1. Light and dark mode different colors using two color definitions
+1. Light and dark mode different colors using a color filter
 
 ### Light and dark mode the same color
+
+::::{note}
+This method has the benefit that the custom color can be used also within html and css elements.
+::::
 
 #### Code in `_static/color.css` 
 
@@ -81,7 +81,12 @@ In this case one has three options:
 
 <div class="newcolor-same">HTML text</div>
 
-### Light and dark mode different colors using global color definition
+### Light and dark mode different colors using two color definitions
+
+::::{note}
+This method has the benefit that the custom colors can be used also within html and css elements with automatic changes when the mode changes from Light to dark or vice versa. 
+::::
+
 
 #### Code in `_static/color.css` 
 
@@ -117,7 +122,11 @@ html[data-theme="dark"] {
 
 <div class="newcolor">HTML text</div>
 
-### Light and dark mode different colors using local color filters
+### Light and dark mode different colors using a color filter
+
+::::{warning}
+This method has the benefit that the custom colors can only be used as a class.
+::::
 
 #### Code in `_static/color.css` 
 
