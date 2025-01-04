@@ -105,7 +105,7 @@ def write_css(app,exc):
     CSS_content += CSS_class+'\n\n'
     # admonitions
     base = '/* <color> admonition */\ndiv.admonition.<color> {\n\tborder-color: var(--<color>);\n\tbackground-color: var(--<color>-min);\n}\n'
-    base += 'div.admonition.<color> > .admonition-title {\n\tcolor: var(--pst-color-text-base);\n\n\tbackground-color: var(--<color>-mid);\n}\n'
+    base += 'div.admonition.<color> > .admonition-title {\n\tcolor: var(--pst-color-text-base);\n\tbackground-color: var(--<color>-mid);\n}\n'
     base += 'div.admonition.<color> > .admonition-title::after {\n\tcolor: var(--<color>);\n}\n'
     CSS_admonitions = '/* Admonitions */\n'
     for name in names:
