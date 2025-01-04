@@ -55,6 +55,7 @@ div.admonition.purplepink {
 	background-color: var(--purplepink-min);
 }
 div.admonition.purplepink > .admonition-title {
+	color: var(--pst-color-text-base);
 	background-color: var(--purplepink-mid);
 }
 div.admonition.purplepink > .admonition-title::after {
@@ -66,6 +67,7 @@ div.admonition.greenorange {
 	background-color: var(--greenorange-min);
 }
 div.admonition.greenorange > .admonition-title {
+	color: var(--pst-color-text-base);
 	background-color: var(--greenorange-mid);
 }
 div.admonition.greenorange > .admonition-title::after {
