@@ -61,6 +61,9 @@ div.admonition.purplepink > .admonition-title {
 div.admonition.purplepink > .admonition-title::after {
 	color: var(--purplepink);
 }
+div.admonition.purplepink > p{
+	color: var(--pst-color-text-base);
+}
 /* greenorange admonition */
 div.admonition.greenorange {
 	border-color: var(--greenorange);
@@ -72,6 +75,9 @@ div.admonition.greenorange > .admonition-title {
 }
 div.admonition.greenorange > .admonition-title::after {
 	color: var(--greenorange);
+}
+div.admonition.greenorange > p{
+	color: var(--pst-color-text-base);
 }
 ```
 
