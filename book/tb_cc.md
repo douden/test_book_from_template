@@ -128,7 +128,7 @@ Content of the admonition
 
 ```
 ::::{prf:theorem}
-:class: purplepink
+:class: greenorange
 Content of the admonition
 ::::
 ```
