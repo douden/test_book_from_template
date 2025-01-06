@@ -1,6 +1,10 @@
 import os
 from sphinx.application import Sphinx
 import numpy as np
+from docutils import nodes
+from docutils.writers import Writer
+from sphinx.util.docutils import SphinxRole
+from sphinx.domains import Domain
 
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
@@ -159,6 +163,9 @@ def setup(app: Sphinx):
 
     app.connect('config-inited',set_named)
     app.connect('config-inited',set_latex)
+
+    app.add_node(ColorText, html=(visit_color_text, depart_color_text))
+
     app.connect("build-finished",write_css)
 
     return
@@ -346,4 +353,29 @@ def set_named(app,conf):
 
     app.config = old
 
+    roles = {k: ColorRole(k) for k, v in old['tb_cc_list'].items()}
+    for role in roles:
+        app.add_role(role,roles[role])
+        
     return
+
+class ColorText(nodes.Inline, nodes.TextElement):
+    pass
+
+def visit_color_text(self: Writer, node: ColorText):
+    self.body.append("<span class=%s>"%(node["style"]))
+    # self.body.append(self.starttag(node, "span", "", style=node["style"]))
+    print("<span class=%s>"%(node["style"]))
+
+def depart_color_text(self: Writer, node: ColorText):
+    self.body.append("</span>")
+
+class ColorRole(SphinxRole):
+    def __init__(self, color_name: str):
+        self._color_name = color_name
+
+    def run(self):
+        messages = []
+        node = ColorText(self.rawtext, self.text)
+        node["style"] = f"{self._color_name}"
+        return [node], messages

@@ -21,3 +21,4 @@ sphinx-tudelft-theme
 teachbooks-sphinx-tippy
 # sphinx-favicon
 # git+https://github.com/TeachBooks/Sphinx-TUDelft-theme.git
+# atsphinx-color-text

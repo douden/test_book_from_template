@@ -39,6 +39,9 @@ sphinx:
         thebe: true
     html_show_copyright: false
     html_last_updated_fmt: '%B %-d, %Y'
+  local_extensions:
+    applet: _ext/
+    tb_cc: _ext/
   extra_extensions:
     - jupyterbook_patches
     - download_link_replacer
@@ -50,10 +53,7 @@ sphinx:
     - sphinx.ext.imgconverter
     - sphinx_tudelft_theme
     - teachbooks_sphinx_tippy
-    # - sphinx_favicon
-  local_extensions:
-    applet: _ext/
-    tb_cc: _ext/
+  
   
 
 bibtex_bibfiles: 

@@ -2,7 +2,7 @@
 
 ## Code in `_config.yml`
 
-```yml
+```yaml
 sphinx:
   config:
     tb_cc_list: {'purplepink':[165,21,160],'greenorange':[45,180,117,204,158,110]}
@@ -10,7 +10,7 @@ sphinx:
 
 ## Code inserted in `_config.yml`
 
-```yml
+```yaml
 sphinx:
   config:
     mathjax3_config:
@@ -95,7 +95,7 @@ $$
 $$
 ```
 
-### Color admonotions
+### Color admonitions
 
 ::::{admonition} Title of the admonition
 :class: purplepink
@@ -120,3 +120,54 @@ Content of the admonition
 Content of the admonition
 ::::
 ```
+
+::::{prf:theorem}
+:class: purplepink
+Content of the admonition
+::::
+
+```
+::::{prf:theorem}
+:class: purplepink
+Content of the admonition
+::::
+```
+
+::::{exercise}
+:class: greenorange
+Content of the admonition
+::::
+
+```
+::::{prf:exercise}
+:class: greenorange
+Content of the admonition
+::::
+```
+
+### Text in color
+
+{greenorange}`Sphinx`
+
+```
+{greenorange}`Sphinx`
+```
+
+_{purplepink}`Sphinx`_
+
+```
+_{purplepink}`Sphinx`_
+```
+
+**{purplepink}`Sphinx`**
+
+```
+**{purplepink}`Sphinx`**
+```
+
+_**{greenorange}`Sphinx`**_
+
+```
+_**{greenorange}`Sphinx`**_
+```
+
