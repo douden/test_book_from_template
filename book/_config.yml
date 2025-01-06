@@ -13,6 +13,8 @@ sphinx:
   config:
     # tud_change_mtext: false
     # tb_cc_dark_and_light: false
+    # tb_cc_saturate: 0.5
+    # tb_cc_named_colors: false
     tb_cc_list: {'purplepink':[165,21,160],'greenorange':[45,180,117,204,158,110]}
     html_static_path : ["figures"]
     html_js_files:
