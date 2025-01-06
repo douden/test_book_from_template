@@ -5,7 +5,6 @@ from docutils import nodes
 from docutils.writers import Writer
 from sphinx.util.docutils import SphinxRole
 from sphinx.domains import Domain
-from docutils.parsers.rst.directives.admonitions import Admonition
 
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
@@ -113,7 +112,7 @@ def write_css(app,exc):
         base = '/* <color> */\ndiv.admonition.<color> {\n\tborder-color: var(--<color>);\n\tbackground-color: var(--<color>-min);\n}\n'
         base += 'div.admonition.<color> > .admonition-title {\n\tcolor: var(--pst-color-text-base);\n\tbackground-color: var(--<color>-mid);\n}\n'
         base += 'div.admonition.<color> > .admonition-title::after {\n\tcolor: var(--<color>);\n}\n'
-        base += 'div.admonition.<color> > p{\n\tcolor: var(--pst-color-text-base);\n}\n'
+        base += 'div.admonition.<color> > p,\ndiv.admonition.<color> > section {\n\tcolor: var(--pst-color-text-base);\n}\n'
         CSS_admonitions = '/* Admonition classes */\n'
         for name in names:
             CSS_admonitions += base.replace('<color>',name)
