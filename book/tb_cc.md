@@ -139,7 +139,7 @@ Content of the admonition
 ::::
 
 ```
-::::{prf:exercise}
+::::{exercise}
 :class: greenorange
 Content of the admonition
 ::::

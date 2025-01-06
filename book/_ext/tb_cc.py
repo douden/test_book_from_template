@@ -5,6 +5,7 @@ from docutils import nodes
 from docutils.writers import Writer
 from sphinx.util.docutils import SphinxRole
 from sphinx.domains import Domain
+from docutils.parsers.rst.directives.admonitions import Admonition
 
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
@@ -163,6 +164,8 @@ def setup(app: Sphinx):
 
     app.connect('config-inited',set_named)
     app.connect('config-inited',set_latex)
+
+    # app.add_directive("example", Example)
 
     app.add_node(ColorText, html=(visit_color_text, depart_color_text))
 
@@ -364,8 +367,6 @@ class ColorText(nodes.Inline, nodes.TextElement):
 
 def visit_color_text(self: Writer, node: ColorText):
     self.body.append("<span class=%s>"%(node["style"]))
-    # self.body.append(self.starttag(node, "span", "", style=node["style"]))
-    print("<span class=%s>"%(node["style"]))
 
 def depart_color_text(self: Writer, node: ColorText):
     self.body.append("</span>")
