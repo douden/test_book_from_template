@@ -17,7 +17,7 @@ sphinx-exercise
 TexSoup
 sphinx-book-theme==1.1.0
 teachbooks-sphinx-grasple
-# sphinx-tudelft-theme
+sphinx-tudelft-theme
 teachbooks-sphinx-tippy
 # sphinx-favicon
-git+https://github.com/TeachBooks/Sphinx-TUDelft-theme.git
+# git+https://github.com/TeachBooks/Sphinx-TUDelft-theme.git
