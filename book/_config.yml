@@ -12,10 +12,11 @@ html:
 sphinx:
   config:
     # tud_change_mtext: false
-    # named_colors_dark_and_light: false
-    # named_colors_saturation: 0.5
-    # named_colors_include_CSS: false
-    named_colors_custom_colors: {'purplepink':[165,21,160],'greenorange':[45,180,117,204,158,110]}
+    comboroles_roles: {'strong_lightanddark': ['strong', 'lightanddark']}
+    named_colors_dark_and_light: true
+    named_colors_saturation: 1.5
+    named_colors_include_CSS: true
+    named_colors_custom_colors: {'onlylight':[165,21,160],'lightanddark':[45,180,117,204,158,110]}
     html_static_path : ["figures"]
     html_js_files:
     - https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.4/require.min.js
@@ -53,6 +54,7 @@ sphinx:
     - sphinx.ext.imgconverter
     - sphinx_tudelft_theme
     - teachbooks_sphinx_tippy  
+    - sphinxnotes.comboroles
 
 bibtex_bibfiles: 
   - references.bib

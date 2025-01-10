@@ -401,7 +401,6 @@ class ColorAdmonition(Admonition):
             self.options["class"] = [self.name]
         else:
             self.options["class"].append(self.name)
-        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         if len(self.arguments)>0:
             self.arguments[0] = f"{self.arguments[0]}"
         else:

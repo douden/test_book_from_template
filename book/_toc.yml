@@ -21,4 +21,5 @@ parts:
     - file: 'external/Sphinx-Grasple-public/README.md'
     - file: 'external/dummy_submodule/README.md'
     - file: 'color.md'
-    - file: 'tb_cc.md'
+    - file: 'readme_manual.md'
+    - file: 'readme_repo.md'
