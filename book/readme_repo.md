@@ -135,7 +135,7 @@ In both cases extra classes can be added to the admonition to apply other stylin
 
 ## Examples & details
 
-To see examples of usage visit [this page in the TeachBooks manual](https://teachbooks.io/manual/intro.html). -->
+To see examples of usage visit [this page in the TeachBooks manual](https://teachbooks.io/manual/intro.html).
 
 ## Contribute
 
