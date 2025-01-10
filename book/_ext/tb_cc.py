@@ -3,8 +3,10 @@ from sphinx.application import Sphinx
 import numpy as np
 from docutils import nodes
 from docutils.writers import Writer
-from sphinx.util.docutils import SphinxRole
+from sphinx.util.docutils import SphinxRole, SphinxDirective
 from sphinx.domains import Domain
+from docutils.parsers.rst import Directive
+from docutils.parsers.rst.directives.admonitions import Admonition
 
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
@@ -55,7 +57,7 @@ def saturate(rgb,sat):
 
 def write_css(app,exc):
 
-    list_of_colors = app.config.tb_cc_list
+    list_of_colors = app.config.named_colors_custom_colors
     if list_of_colors is not None:
     # generate list of names
         names = list(list_of_colors.keys())
@@ -68,7 +70,7 @@ def write_css(app,exc):
             light_colors[name+'-mid'] = hex_mid
             light_colors[name+'-min'] = hex_min
         # if dark colors are required, get/generate them
-        if app.config.tb_cc_dark_and_light:
+        if app.config.named_colors_dark_and_light:
             # assumption: get overrules generate
             dark_colors = {}
             for name in names:
@@ -82,7 +84,7 @@ def write_css(app,exc):
                     # 2) rotate hue
                     rgb = hue_rotate(rgb,180)
                     # 3) saturate
-                    rgb = saturate(rgb,app.config.tb_cc_saturate)
+                    rgb = saturate(rgb,app.config.named_colors_saturation)
                 dark_colors[name] = rgb_to_hex(rgb)
                 hex_mid, hex_min = calc_mid_and_min(rgb)
                 dark_colors[name+'-mid'] = hex_mid
@@ -97,7 +99,7 @@ def write_css(app,exc):
         CSS_light += '\n}'
         CSS_content += CSS_light+'\n\n'
         # dark color string
-        if app.config.tb_cc_dark_and_light:
+        if app.config.named_colors_dark_and_light:
             CSS_dark = '/* dark mode colors */\nhtml[data-theme="dark"] {'
             for name in dark_colors:
                 CSS_dark += '\n\t--%s: %s;'%(name,dark_colors[name])
@@ -117,6 +119,10 @@ def write_css(app,exc):
         for name in names:
             CSS_admonitions += base.replace('<color>',name)
         CSS_content += CSS_admonitions
+        # add no-title stuff
+        CSS_notitle = "/* no-title class */\n"
+        CSS_notitle += "div.admonition.no-title > .admonition-title {\n\tdisplay: none;\n}\n"
+        CSS_content += CSS_notitle
         # write the css file
         staticdir = os.path.join(app.builder.outdir, '_static')
         filename = os.path.join(staticdir,'tb_cc.css')
@@ -129,8 +135,8 @@ def set_latex(app,conf):
 
     old =  app.config
 
-    if old.tb_cc_list is not None:
-        for name in old.tb_cc_list:
+    if old.named_colors_custom_colors is not None:
+        for name in old.named_colors_custom_colors:
             newcommand_name = name
             newcommand_content = ['\class{%s}{#1}'%(name),1]
             
@@ -155,18 +161,18 @@ def set_latex(app,conf):
     return
 
 def setup(app: Sphinx):
-    app.add_config_value('tb_cc_list', None, 'env')
-    app.add_config_value('tb_cc_dark_and_light', True, 'env')
-    app.add_config_value('tb_cc_saturate', 1.5, 'env')
-    app.add_config_value('tb_cc_named_colors', True, 'env')
+    app.add_config_value('named_colors_custom_colors', None, 'env')
+    app.add_config_value('named_colors_dark_and_light', True, 'env')
+    app.add_config_value('named_colors_saturation', 1.5, 'env')
+    app.add_config_value('named_colors_include_CSS', True, 'env')
+
     app.add_css_file('tb_cc.css')
 
     app.connect('config-inited',set_named)
     app.connect('config-inited',set_latex)
 
-    # app.add_directive("example", Example)
-
     app.add_node(ColorText, html=(visit_color_text, depart_color_text))
+    # app.add_directive('greenorange',ColorAdmonition)
 
     app.connect("build-finished",write_css)
 
@@ -176,7 +182,7 @@ def set_named(app,conf):
 
     old =  app.config
 
-    if old.tb_cc_named_colors:
+    if old.named_colors_include_CSS:
 
 
         # list of named colors from
@@ -348,16 +354,17 @@ def set_named(app,conf):
             'yellowgreen':[154,205,50]
         }
 
-        if old.tb_cc_list is None:
-            old['tb_cc_list'] = named_colors
+        if old.named_colors_custom_colors is None:
+            old['named_colors_custom_colors'] = named_colors
         else:
-            old['tb_cc_list'] = named_colors | old['tb_cc_list']
+            old['named_colors_custom_colors'] = named_colors | old['named_colors_custom_colors']
 
     app.config = old
 
-    roles = {k: ColorRole(k) for k, v in old['tb_cc_list'].items()}
+    roles = {k: ColorRole(k) for k, v in old['named_colors_custom_colors'].items()}
     for role in roles:
         app.add_role(role,roles[role])
+        app.add_directive(role,ColorAdmonition)
         
     return
 
@@ -379,3 +386,27 @@ class ColorRole(SphinxRole):
         node = ColorText(self.rawtext, self.text)
         node["style"] = f"{self._color_name}"
         return [node], messages
+    
+class ColorAdmonition(Admonition):
+
+    required_arguments = 0
+    optional_arguments = 1
+    final_argument_whitespace = True
+    option_spec = Admonition.option_spec
+    has_content = True
+
+    def run(self):
+        # Manually add a "tip" class to style it
+        if "class" not in self.options:
+            self.options["class"] = [self.name]
+        else:
+            self.options["class"].append(self.name)
+        print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        if len(self.arguments)>0:
+            self.arguments[0] = f"{self.arguments[0]}"
+        else:
+            self.options["class"].append("no-title")
+            self.arguments = [""]
+        # Now run the Admonition logic so it behaves the same way
+        nodes = super().run()
+        return nodes
