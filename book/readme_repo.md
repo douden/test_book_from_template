@@ -88,9 +88,8 @@ named_colors_custom_colors: None
 
 ### Textual elements
 
-::::{note}
-In the next part, replace `namedcolor` by the name of the CSS/custom named color.
-::::
+> [!NOTE]
+> In the next part, replace `namedcolor` by the name of the CSS/custom named color.
 
 ```latex
 \namedcolor{...}
@@ -131,11 +130,12 @@ If the title is omitted, the title bar will not be displayed.
 
 In both cases extra classes can be added to the admonition to apply other styling.
 
-::::{warning}
-Note that, because of the use of CSS, sometimes results may differ from the expected result.
-::::
+> [!WARNING]
+> Note that, because of the use of CSS, sometimes results may differ from the expected result.
 
 ## Examples & details
+
+
 
 ### Overview of chosen options for the examples
 
