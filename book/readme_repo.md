@@ -4,7 +4,7 @@
 
 This extensions provides a simple solution to use [CSS named colors](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color) and ___custom named colors___ in:
 - $\LaTeX$;
-- HTML text;
+- MarkDown text;
 - Admonitions.
 
 ## What does it do?

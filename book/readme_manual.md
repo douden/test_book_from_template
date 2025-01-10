@@ -11,7 +11,7 @@ This section is useful for user type 3-5.
 
 This extensions provides a simple solution to use [CSS named colors](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color) and ___custom named colors___ in:
 - $\LaTeX$;
-- HTML text;
+- MarkDown text;
 - Admonitions.
 
 ## What does it do?
@@ -182,7 +182,7 @@ Some examples of [CSS named colors](https://developer.mozilla.org/en-US/docs/Web
 	 - $\lightanddark{\sum}_{n=1}^\infty$
 ::::
 
-### HTML text colors
+### MarkDown text colors
 
 The CSS/custom named colors can be somewhat combined with strong and emphasis as shown in the table.
 
