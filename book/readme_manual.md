@@ -171,9 +171,9 @@ Some examples of [CSS named colors](https://developer.mozilla.org/en-US/docs/Web
    * - hotpink
      - `1.\hotpink{49}`
      - $1.\hotpink{49}$
-   * - moccasin
-     - `\dfrac{\moccasin{\partial}f}{\moccasin{\partial}x}`
-     - $\dfrac{\moccasin{\partial}f}{\moccasin{\partial}x}$
+   * - darkturquoise
+     - `\dfrac{\darkturquoise{\partial}f}{\darkturquoise{\partial}x}`
+     - $\dfrac{\darkturquoise{\partial}f}{\darkturquoise{\partial}x}$
    * - onlylight
      - `\onlylight{\LaTeX}`
 	 - $\onlylight{\LaTeX}$
@@ -198,9 +198,9 @@ The CSS/custom named colors can be somewhat combined with strong and emphasis as
    * - hotpink
      - `` *{hotpink}`emphasis`* ``
      - *{hotpink}`emphasis`*
-   * - moccasin
-     - `` **{moccasin}`strong`** ``
-     - **{moccasin}`strong`**
+   * - darkturquoise
+     - `` **{darkturquoise}`strong`** ``
+     - **{darkturquoise}`strong`**
    * - onlylight
      - `` _**{onlylight}`strong-emphasis`**_ ``
      - _**{onlylight}`strong-emphasis`**_
@@ -314,14 +314,14 @@ Content of general admonition.
 :::::{grid-item-card}
 ```md
 ::::{warning}
-:class: moccasin
+:class: darkturquoise
 Content of warning.
 ::::
 ```
 :::::
 :::::{grid-item-card}
 ```md
-::::{moccasin} Warning
+::::{darkturquoise} Warning
 :class: warning
 Content of warning.
 ::::
@@ -332,12 +332,12 @@ Content of warning.
 ::::::{grid} 2
 :::::{grid-item-card}
 ::::{warning}
-:class: moccasin
+:class: darkturquoise
 Content of warning.
 ::::
 :::::
 :::::{grid-item-card}
-::::{moccasin} Warning
+::::{darkturquoise} Warning
 :class: warning
 Content of warning.
 ::::
@@ -351,15 +351,15 @@ Content of warning.
 ```md
 ::::{prf:defintion}
 :class: onlylight
-Content of theorem.
+Content of definition.
 ::::
 ```
 :::::
 :::::{grid-item-card}
 ```md
-::::{onlylight} Theorem
-:class: prf:theorem
-Content of theorem.
+::::{onlylight} Definition
+:class: prf:definition
+Content of definition.
 ::::
 ```
 :::::
@@ -369,13 +369,13 @@ Content of theorem.
 :::::{grid-item-card}
 ::::{prf:definition}
 :class: onlylight
-Content of theorem.
+Content of definition.
 ::::
 :::::
 :::::{grid-item-card}
 ::::{onlylight} Definition
 :class: definition
-Content of theorem.
+Content of definition.
 ::::
 :::::
 ::::::
