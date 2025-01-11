@@ -1,4 +1,4 @@
-# Sphinx extension: Named colors
+1# Sphinx extension: Named colors
 
 ```{admonition} User types
 :class: tip
@@ -232,8 +232,8 @@ we can show the next result
      - Markdown Code
      - Result
    * - strong_lightanddark
-     - `` {strong_lightanddark}`**strong inside does work**` ``
-	 - {strong_lightanddark}`**strong inside does work**`
+     - `` {strong_lightanddark}`strong colors now work` ``
+	 - {strong_lightanddark}`strong colors now work`
 ::::
 
 ### Colored admonitions
