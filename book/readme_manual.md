@@ -93,11 +93,11 @@ named_colors_custom_colors: None
 
 ## Provided code
 
-### Textual elements
-
 ::::{note}
 In the next part, replace `namedcolor` by the name of the CSS/custom named color.
 ::::
+
+### $\LaTeX$ elements
 
 ```latex
 \namedcolor{...}
@@ -105,6 +105,8 @@ In the next part, replace `namedcolor` by the name of the CSS/custom named color
 
 - Only use in $\LaTeX$ code.
 - This will typeset `...` in the color _namedcolor_.
+
+### MarkDown elements
 
 ```md
 {namedcolor}`...`
@@ -134,9 +136,11 @@ Content
 ::::
 ```
 
-If the title is omitted, the title bar will not be displayed.
+If the title is omitted in the new admonition, the title bar will not be displayed.
 
 In both cases extra classes can be added to the admonition to apply other styling.
+
+A special new class for existing admonitions is also introduced: `no-title`. This suppresses printing of the title bar, even if the title is given. For the named color admonitions this happens automatically if no title is given.
 
 ::::{warning}
 Note that, because of the use of CSS, sometimes results may differ from the expected result.
