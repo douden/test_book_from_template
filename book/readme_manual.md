@@ -1,4 +1,4 @@
-1# Sphinx extension: Named colors
+# Sphinx extension: Named colors
 
 ```{admonition} User types
 :class: tip
@@ -115,6 +115,22 @@ In the next part, replace `namedcolor` by the name of the CSS/custom named color
 - Only use in _MarkDown_ code.
 - This will typeset `...` in the color _namedcolor_.
 
+To provide the use of {strong}`strong` and/or {emphasis}`emphasis` colored text, we als provide the next three roles:
+
+```md
+{namedcolor_strong}`...`
+```
+
+```md
+{namedcolor_emphasis}`...`
+```
+
+```md
+{namedcolor_strong_emphasis}`...`
+```
+
+These extra roles have been created using the extension [sphinxnotes-comboroles](https://sphinx.silverrainz.me/comboroles/).
+
 ### Admonitions
 
 Colored admonitions can be generated in two ways, explained below.
@@ -141,6 +157,8 @@ If the title is omitted in the new admonition, the title bar will not be display
 In both cases extra classes can be added to the admonition to apply other styling.
 
 A special new class for existing admonitions is also introduced: `no-title`. This suppresses printing of the title bar, even if the title is given. For the named color admonitions this happens automatically if no title is given.
+
+For the named color admonitions the class `show-bar` is introduced for titleless admonitions. This focres printing of the title bar. If a title is given, the title will be printed too and adding the class `show-bar` is redundant. 
 
 ::::{warning}
 Note that, because of the use of CSS, sometimes results may differ from the expected result.
@@ -173,8 +191,8 @@ Some examples of [CSS named colors](https://developer.mozilla.org/en-US/docs/Web
      - `\olive{\int_a^bf(x)dx}`
      - $\olive{\int_a^bf(x)dx}$
    * - hotpink
-     - `1.\hotpink{49}`
-     - $1.\hotpink{49}$
+     - `1.\hotpink{\mathbf{48}}`
+     - $1.\hotpink{\mathbf{48}}$
    * - darkturquoise
      - `\dfrac{\darkturquoise{\partial}f}{\darkturquoise{\partial}x}`
      - $\dfrac{\darkturquoise{\partial}f}{\darkturquoise{\partial}x}$
@@ -192,48 +210,29 @@ All of the $\LaTeX$ commands can be used in all components that already support 
 
 The defined roles can be used in regular MarkDown code, similar to other roles such as `numref` and `code`.
 
-The CSS/custom named colors can be somewhat combined with strong and emphasis as shown in the table.
-
 ::::{list-table}
 :widths: auto
 :header-rows: 1
    * - Color
+     - Style
      - Markdown Code
      - Result
    * - olive
+     - regular
      - `` {olive}`regular` ``
      - {olive}`regular`
    * - hotpink
-     - `` *{hotpink}`emphasis`* ``
-     - *{hotpink}`emphasis`*
-   * - darkturquoise
-     - `` **{darkturquoise}`strong`** ``
-     - **{darkturquoise}`strong`**
+     - strong
+     - `` {hotpink_strong}`strong` ``
+     - {hotpink_strong}`emphasis`
    * - onlylight
-     - `` _**{onlylight}`strong-emphasis`**_ ``
-     - _**{onlylight}`strong-emphasis`**_
+     - emphasis
+     - `` {onlylight_emphasis}`emphasis`  ``
+     - {onlylight_emphasis}`emphasis`
    * - lightanddark
-     - `` {lightanddark}`**strong inside does not work**` ``
-	 - {lightanddark}`**strong inside does not work**`
-::::
-
-Note the last line: combining roles does not always work. If wanted, take a look at the extension [sphinxnotes-comboroles](https://sphinx.silverrainz.me/comboroles/).
-
-If we use this extension and defined the new role as follows:
-```yaml
-comboroles_roles: {'strong_lightanddark': ['strong', 'lightanddark']}
-```
-we can show the next result
-
-::::{list-table}
-:widths: auto
-:header-rows: 1
-   * - Color
-     - Markdown Code
-     - Result
-   * - strong_lightanddark
-     - `` {strong_lightanddark}`strong colors now work` ``
-	 - {strong_lightanddark}`strong colors now work`
+     - strong emphasis
+     - `` {lightanddark_strong_emphasis}`strong emphasis` ``
+	 - {lightanddark_strong_emphasis}`strong emphasis`
 ::::
 
 ### Colored admonitions
@@ -422,7 +421,53 @@ Content of admonition.
 :::::
 ::::::
 
-<!-- To see examples of usage visit the [TeachBooks manual](https://teachbooks.io/manual/intro.html). -->
+**Titleless admonitions with dropdown**
+
+In case a dropdown admonition is required without a title, only the new CSS/custum named color admonitions can safely be used.
+
+::::::{grid} 1
+:::::{grid-item-card}
+```md
+::::{lightcoral}
+:class: dropdown, warning
+Content of admonition.
+::::
+```
+:::::
+::::::
+
+::::::{grid} 1
+:::::{grid-item-card}
+::::{lightcoral}
+:class: dropdown, warning
+Content of admonition.
+::::
+:::::
+::::::
+
+**Titleless admonitions with title bar**
+
+In case an admonition is required without a title but with a title bar, only the new CSS/custum named color admonitions can safely be used. In that case add the class `show-bar`. 
+
+::::::{grid} 1
+:::::{grid-item-card}
+```md
+::::{gold}
+:class: show-bar, warning
+Content of admonition.
+::::
+```
+:::::
+::::::
+
+::::::{grid} 1
+:::::{grid-item-card}
+::::{gold}
+:class: show-bar, warning
+Content of admonition.
+::::
+:::::
+::::::
 
 ## Contribute
 

@@ -12,7 +12,7 @@ html:
 sphinx:
   config:
     # tud_change_mtext: false
-    comboroles_roles: {'strong_lightanddark': ['strong', 'lightanddark']}
+    # comboroles_roles: {'lightanddark_strong': ['strong', 'lightanddark']}
     named_colors_dark_and_light: true
     named_colors_saturation: 1.5
     named_colors_include_CSS: true
@@ -53,8 +53,7 @@ sphinx:
     - teachbooks_sphinx_grasple
     - sphinx.ext.imgconverter
     - sphinx_tudelft_theme
-    - teachbooks_sphinx_tippy  
-    - sphinxnotes.comboroles
+    - teachbooks_sphinx_tippy
 
 bibtex_bibfiles: 
   - references.bib

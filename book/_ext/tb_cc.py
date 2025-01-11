@@ -7,6 +7,7 @@ from sphinx.util.docutils import SphinxRole, SphinxDirective
 from sphinx.domains import Domain
 from docutils.parsers.rst import Directive
 from docutils.parsers.rst.directives.admonitions import Admonition
+import sphinxnotes.comboroles as spcr
 
 def rgb_to_hex(rgb):
     return '#{:02x}{:02x}{:02x}'.format(*rgb)
@@ -122,6 +123,7 @@ def write_css(app,exc):
         # add no-title stuff
         CSS_notitle = "/* no-title class */\n"
         CSS_notitle += "div.admonition.no-title > .admonition-title {\n\tdisplay: none;\n}\n"
+        CSS_notitle += "div.admonition.no-title.dropdown > .admonition-title {\n\tvisibility: hidden;\n}\n"
         CSS_content += CSS_notitle
         # write the css file
         staticdir = os.path.join(app.builder.outdir, '_static')
@@ -161,6 +163,9 @@ def set_latex(app,conf):
     return
 
 def setup(app: Sphinx):
+
+    app.setup_extension('sphinxnotes.comboroles')
+
     app.add_config_value('named_colors_custom_colors', None, 'env')
     app.add_config_value('named_colors_dark_and_light', True, 'env')
     app.add_config_value('named_colors_saturation', 1.5, 'env')
@@ -170,6 +175,7 @@ def setup(app: Sphinx):
 
     app.connect('config-inited',set_named)
     app.connect('config-inited',set_latex)
+    app.connect('config-inited',spcr._config_inited)
 
     app.add_node(ColorText, html=(visit_color_text, depart_color_text))
     # app.add_directive('greenorange',ColorAdmonition)
@@ -359,6 +365,16 @@ def set_named(app,conf):
         else:
             old['named_colors_custom_colors'] = named_colors | old['named_colors_custom_colors']
 
+    # Add the comboroles
+    comboroles_roles = {}
+    for name in old['named_colors_custom_colors']:
+        comboroles_roles[name+'_strong'] = [name, 'strong']
+        comboroles_roles[name+'_emphasis'] = [name, 'emphasis']
+        comboroles_roles[name+'_strong_emphasis'] = [name, 'strong', 'emphasis']
+    if 'comboroles_roles' in old:
+        old['comboroles_roles'] = old['comboroles_roles'] | comboroles_roles
+    else:
+        old['comboroles_roles'] = comboroles_roles
     app.config = old
 
     roles = {k: ColorRole(k) for k, v in old['named_colors_custom_colors'].items()}
@@ -396,16 +412,19 @@ class ColorAdmonition(Admonition):
     has_content = True
 
     def run(self):
-        # Manually add a "tip" class to style it
         if "class" not in self.options:
             self.options["class"] = [self.name]
         else:
             self.options["class"].append(self.name)
         if len(self.arguments)>0:
-            self.arguments[0] = f"{self.arguments[0]}"
+            if "no-title" not in self.options["class"]:
+                self.arguments[0] = f"{self.arguments[0]}"
+            else:
+                self.arguments = ["&nbsp;"]
         else:
-            self.options["class"].append("no-title")
-            self.arguments = [""]
+            if "dropdown" not in self.options["class"] and "show-bar" not in self.options["class"]:
+                self.options["class"].append("no-title")
+            self.arguments = ["&nbsp;"]
         # Now run the Admonition logic so it behaves the same way
         nodes = super().run()
         return nodes

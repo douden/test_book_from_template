@@ -1,5 +1,14 @@
 # Sphinx extension: Named colors
 
+# Sphinx extension: Named colors
+
+```{admonition} User types
+:class: tip
+This section is useful for user type 3-5.
+```
++++
+{bdg-primary}`Sphinx Extension`
+
 ## Introduction
 
 This extensions provides a simple solution to use [CSS named colors](https://developer.mozilla.org/en-US/docs/Web/CSS/named-color) and ___custom named colors___ in:
@@ -86,10 +95,10 @@ named_colors_custom_colors: None
 
 ## Provided code
 
-### Textual elements
-
 > [!NOTE]
 > In the next part, replace `namedcolor` by the name of the CSS/custom named color.
+`
+### $\LaTeX$ elements
 
 ```latex
 \namedcolor{...}
@@ -98,12 +107,30 @@ named_colors_custom_colors: None
 - Only use in $\LaTeX$ code.
 - This will typeset `...` in the color _namedcolor_.
 
+### MarkDown elements
+
 ```md
 {namedcolor}`...`
 ```
 
-- Only use in _inline_ code.
+- Only use in _MarkDown_ code.
 - This will typeset `...` in the color _namedcolor_.
+
+To provide the use of {strong}`strong` and/or {emphasis}`emphasis` colored text, we als provide the next three roles:
+
+```md
+{namedcolor_strong}`...`
+```
+
+```md
+{namedcolor_emphasis}`...`
+```
+
+```md
+{namedcolor_strong_emphasis}`...`
+```
+
+These extra roles have been created using the extension [sphinxnotes-comboroles](https://sphinx.silverrainz.me/comboroles/).
 
 ### Admonitions
 
@@ -126,12 +153,17 @@ Content
 ::::
 ```
 
-If the title is omitted, the title bar will not be displayed.
+If the title is omitted in the new admonition, the title bar will not be displayed.
 
 In both cases extra classes can be added to the admonition to apply other styling.
 
-> [!WARNING]
-> Note that, because of the use of CSS, sometimes results may differ from the expected result.
+A special new class for existing admonitions is also introduced: `no-title`. This suppresses printing of the title bar, even if the title is given. For the named color admonitions this happens automatically if no title is given.
+
+For the named color admonitions the class `show-bar` is introduced for titleless admonitions. This focres printing of the title bar. If a title is given, the title will be printed too and adding the class `show-bar` is redundant.
+
+::::{warning}
+Note that, because of the use of CSS, sometimes results may differ from the expected result.
+::::
 
 ## Examples & details
 
