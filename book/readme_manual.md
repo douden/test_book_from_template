@@ -110,7 +110,7 @@ In the next part, replace `namedcolor` by the name of the CSS/custom named color
 {namedcolor}`...`
 ```
 
-- Only use in _inline_ code.
+- Only use in _MarkDown_ code.
 - This will typeset `...` in the color _namedcolor_.
 
 ### Admonitions
@@ -182,7 +182,11 @@ Some examples of [CSS named colors](https://developer.mozilla.org/en-US/docs/Web
 	 - $\lightanddark{\sum}_{n=1}^\infty$
 ::::
 
+All of the $\LaTeX$ commands can be used in all components that already support $\LaTeX$.
+
 ### MarkDown text colors
+
+The defined roles can be used in regular MarkDown code, similar to other roles such as `numref` and `code`.
 
 The CSS/custom named colors can be somewhat combined with strong and emphasis as shown in the table.
 
@@ -236,7 +240,7 @@ An alternative option is to use an admonition with the name of the CSS/custom na
 
 Following are some examples with different colors, with the two code options next to each other, followed by the two results.
 
-A special case is a new class for the general admonition: `no-title`. This suppresses printing of the title, even if the title is given.
+A special feature is a new class for existing admonitions: `no-title`. This suppresses printing of the title, even if the title is given. For the named color admonitions this happens automatically if no title is given.
 
 **General admonition**
 
