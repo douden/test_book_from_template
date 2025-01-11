@@ -91,7 +91,7 @@ named_colors_custom_colors: None
 - _dictionary_: A Python dictionary where each `key` defines a custom name and the `value` is a list of 3 or 6 integers, with each integer at minimum 0 and at maximum 255.
   - If 3 integers are provided, these are the RGB values of the custom named color and, if specified, the dark data-theme color will be generated.
   - If 6 integers are provided, the first set of 3 integers form the RGB values of the custom named color and the second set of 3 integers form the RGB values of the dark data-theme color.
-  - Each key should contain only characters from the ranges `a-z` and `A-Z`.
+  - Each key should contain only characters from the ranges `a-z`.
 
 ## Provided code
 
