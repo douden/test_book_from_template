@@ -3,9 +3,7 @@ from sphinx.application import Sphinx
 import numpy as np
 from docutils import nodes
 from docutils.writers import Writer
-from sphinx.util.docutils import SphinxRole, SphinxDirective
-from sphinx.domains import Domain
-from docutils.parsers.rst import Directive
+from sphinx.util.docutils import SphinxRole
 from docutils.parsers.rst.directives.admonitions import Admonition
 import sphinxnotes.comboroles as spcr
 
@@ -178,7 +176,6 @@ def setup(app: Sphinx):
     app.connect('config-inited',spcr._config_inited)
 
     app.add_node(ColorText, html=(visit_color_text, depart_color_text))
-    # app.add_directive('greenorange',ColorAdmonition)
 
     app.connect("build-finished",write_css)
 
