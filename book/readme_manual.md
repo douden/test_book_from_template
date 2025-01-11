@@ -366,7 +366,7 @@ Content of definition.
 :::::{grid-item-card}
 ```md
 ::::{onlylight} Definition
-:class: prf:definition
+:class: definition
 Content of definition.
 ::::
 ```
