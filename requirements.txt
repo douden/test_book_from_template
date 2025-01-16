@@ -18,5 +18,6 @@ TexSoup
 sphinx-book-theme==1.1.0
 teachbooks-sphinx-grasple
 sphinx-tudelft-theme
-teachbooks-sphinx-tippy
-git+https://github.com/TeachBooks/Sphinx-Named-Colors.git
+# teachbooks-sphinx-tippy
+sphinx-named-colors
+git+https://github.com/TeachBooks/teachbooks-sphinx-tippy.git
