@@ -11,6 +11,7 @@ html:
 
 sphinx:
   config:
+    inverter_all: false
     named_colors_custom_colors: {'onlylight':[165,21,160],'lightanddark':[45,180,117,204,158,110]}
     html_static_path : ["figures"]
     html_js_files:
@@ -50,6 +51,7 @@ sphinx:
     - sphinx_tudelft_theme
     - teachbooks_sphinx_tippy
     - sphinx_named_colors
+    - sphinx_image_inverter
 
 bibtex_bibfiles: 
   - references.bib

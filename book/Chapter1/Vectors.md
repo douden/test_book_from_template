@@ -18,7 +18,6 @@ Consider an arrow $\mathbf{v}_{1}$ in the plane as in {numref}`Figure %s <Fig:Ve
 
 ```{figure} Images/Fig-Vectors-ArrowinPlane.svg
 :name: Fig:Vectors:ArrowinPlane
-:class: dark-light
 
 Two arrows in the plane.
 ```
@@ -257,6 +256,13 @@ Note that for every molecule of sodium sulfate we need two molecules of carbon i
 
 ```{figure} Images/Fig-Vectors-ChemRec.svg
 :name: Fig:Vectors:ChemRec
+
+The chemical reaction given in {eq}`Eq:Vectors:ChemReac`.
+```
+
+```{figure} Images/Fig-Vectors-ChemRec.svg
+:name: Fig:Vectors:ChemRec2
+:class: dark-light
 
 The chemical reaction given in {eq}`Eq:Vectors:ChemReac`.
 ```
