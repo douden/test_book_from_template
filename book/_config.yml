@@ -11,7 +11,9 @@ html:
 
 sphinx:
   config:
+    html_logo: figures/TB_logo.png
     inverter_all: false
+    tud_change_logo: false
     named_colors_custom_colors: {'onlylight':[165,21,160],'lightanddark':[45,180,117,204,158,110]}
     html_static_path : ["figures"]
     html_js_files:
@@ -21,11 +23,12 @@ sphinx:
       use_thebe_lite: true
       exclude_patterns: ["**/_*.yml", "**/*.md", "**/*.ipynb"]
     html_theme_options:
-      logo: {
-        text: "Original branch",
-        image_light: "TB_logo.png",
-        image_dark: "TB_logo_dark.png"
-      }
+      # logo: {
+      #   text: "Original branch",
+      #   # image_light: "TB_logo.png",
+      #   # image_dark: "TB_logo_dark.png",
+      #   # image_light: "TB_logo.png"
+      # }
       repository_url: "https://github.com/user/repo" #add your own repo URL here
       path_to_docs: "book"
       repository_branch: "main"
