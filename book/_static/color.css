@@ -4,7 +4,7 @@
     --newcolor: var(--newcolor-light);
 }
 
-html[data-theme="dark"] {
+html[data-theme=dark] {
     --newcolor: var(--newcolor-dark);
 }
 
@@ -17,3 +17,4 @@ html[data-theme="dark"] {
 html[data-theme="dark"] .newcolor-filter {
     filter:  invert(1) hue-rotate(180deg) saturate(1.5);
 }
+

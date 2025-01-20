@@ -1,7 +1,7 @@
 # first list the packages you wish to download from PyPI
 teachbooks # depends on jupyter-book
 jupyterbook-patches
-# sphinx-image-inverter
+sphinx-image-inverter
 download_link_replacer
 
 # now list the packages (and the respective url) you wish to download from the GitLab package registry
@@ -20,4 +20,4 @@ teachbooks-sphinx-grasple
 sphinx-tudelft-theme
 teachbooks-sphinx-tippy
 sphinx-named-colors
-git+https://github.com/TeachBooks/Sphinx-Image-Inverter.git@add_switch #bump
+git+https://github.com/TeachBooks/Sphinx-TUDelft-theme.git
