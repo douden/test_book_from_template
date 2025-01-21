@@ -12,7 +12,7 @@ from sphinx.util.typing import ExtensionMetadata
 
 from typing import Optional
 
-def generate_style(height: Optional[str], width: Optional[str]):
+def generate_style(width: Optional[str], height: Optional[str]):
 	'''
 	Given a height and width, generates an inline style that can be used in HTML.
 	'''
@@ -44,34 +44,57 @@ class IframeDirective(SphinxDirective):
 
         iframe_class = self.options.get("class")
 
-        if iframe_class is None:
-            iframe_class = ""
-        elif isinstance(iframe_class, list):
-            iframe_class = " ".join(iframe_class)
+        if self.name == "h5p":
+             base_class = "sphinx blend"
+             if iframe_class is not None:
+                  if "no-blend" in iframe_class:
+                    base_class = "sphinx"        
+        elif self.name == "video":
+             base_class = "sphinx no-blend"
+             if iframe_class is not None:
+                  if "blend" in iframe_class and "not-blend" not in iframe_class:
+                    base_class = "sphinx"
         else:
-            iframe_class = str(iframe_class)
+             base_class = "sphinx"
 
+        if iframe_class is None:
+            iframe_class = base_class
+        elif isinstance(iframe_class, list):
+            iframe_class = base_class+" "+" ".join(iframe_class)
+        else:
+            iframe_class = base_class+""+str(iframe_class)
+        
+            
         style = generate_style(
             self.options.get("width", None), self.options.get("height", None)
         )
+        if style != '':
+            style = 'style="%s"'%(style)
 
         iframe_html = f"""
-            <iframe class="sphinx {iframe_class}" src="{self.arguments[0]}" allow="fullscreen *;autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *" frameborder="0"></iframe>
+            <iframe class="{iframe_class}" {style} src="{self.arguments[0]}" allow="fullscreen *;autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *" frameborder="0"></iframe>
 		"""
+
+        if self.name == "video":
+             iframe_html = '<div class="video-container">\n' + iframe_html
+             iframe_html = iframe_html + '\n'
+
         iframe_node = nodes.raw(None, iframe_html, format="html")
         return [iframe_node]
     
 def include_js(app: Sphinx):
      
-     if app.config.iframe_h5p_autowidth:
+     if app.config.iframe_h5p_autoresize:
           app.add_js_file("https://tudelft.h5p.com/js/h5p-resizer.js") # to support auto-width for h5p
 
      return
 
 def setup(app: Sphinx):
     app.add_directive("iframe", IframeDirective)
+    app.add_directive("h5p", IframeDirective)
+    app.add_directive("video", IframeDirective)
 
-    app.add_config_value("iframe_h5p_autowidth",True,'env')
+    app.add_config_value("iframe_h5p_autoresize",True,'env')
     app.connect('builder-inited',include_js)
 
     app.add_config_value("iframe_blend_all",True,'env')
@@ -89,14 +112,12 @@ def write_css(app: Sphinx,exc):
     
     # add blend or no-blend option if required
     if app.config.iframe_blend_all:
-        CSS_content += "iframe.sphinx:not(.no-blend) {\n\tbackground: transparent;\n\tmix-blend-mode: darken;\n}\n" # blend all except no-blend
+        CSS_content += "iframe.sphinx:not(.no-blend) {\n\tbackground: transparent;\n\tmix-blend-mode: darken;\n}\n\n" # blend all except no-blend
         CSS_content += "html[data-theme=dark] iframe.sphinx:not(.no-blend) {\n\tfilter: invert(1) hue-rotate(180deg) saturate(%s);\n\tbackground: transparent;\n\tmix-blend-mode: lighten;\n}\n"%(app.config.iframe_saturation) # blend all except no-blend
     else:
-        CSS_content += "iframe.sphinx.blend {\n\tbackground: transparent;\n\tmix-blend-mode: darken;\n}\n" # blend none except blend
+        CSS_content += "iframe.sphinx.blend {\n\tbackground: transparent;\n\tmix-blend-mode: darken;\n}\n\n" # blend none except blend
         CSS_content += "html[data-theme=dark] iframe.sphinx.blend {\n\tfilter: invert(1) hue-rotate(180deg) saturate(%s);\n\tbackground: transparent;\n\tmix-blend-mode: lighten;\n}\n"%(app.config.iframe_saturation) # blend none except blend
     
-
-
     # write the css file
     staticdir = os.path.join(app.builder.outdir, '_static')
     filename = os.path.join(staticdir,'sphinx_iframe.css')

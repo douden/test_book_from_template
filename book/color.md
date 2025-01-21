@@ -47,3 +47,47 @@
 :class: no-blend
 ::::
 :::
+
+## h5p
+
+::::{h5p} https://tudelft.h5p.com/content/1292011179114024347/embed
+:class: some-other-class
+::::
+
+::::{h5p} https://tudelft.h5p.com/content/1292011179114024347/embed
+:class: no-blend, some-other-class
+::::
+
+## html
+
+**setting w+h**
+::::{iframe} ./some_content/element_pdf_and_cdf.html
+:height: 300px
+:width: 600px
+::::
+
+:::{exercise}
+::::{iframe} ./some_content/element_pdf_and_cdf.html
+:height: 300px
+:width: 600px
+::::
+:::
+
+**Not setting w+h**
+::::{iframe} ./some_content/element_pdf_and_cdf.html
+::::
+
+:::{exercise}
+::::{iframe} ./some_content/element_pdf_and_cdf.html
+::::
+:::
+
+## Videos
+
+:::{video} https://www.youtube.com/embed/B1J6Ou4q8vE?si=B-MzoDnCb881oYjZ
+:class: video
+:::
+
+:::{video} https://www.youtube.com/embed/B1J6Ou4q8vE?si=B-MzoDnCb881oYjZ
+:class: video, blend
+:::

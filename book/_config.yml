@@ -11,9 +11,9 @@ html:
 
 sphinx:
   config:
-    # iframe_h5p_autowidth: true
-    iframe_blend_all: false
-    iframe_saturation: 1.0
+    # iframe_h5p_autoresize: true
+    # iframe_blend_all: true
+    # iframe_saturation: 1.0
     html_logo: figures/TB_logo.png
     # inverter_all: true
     tud_change_logo: false
