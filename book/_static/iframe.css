@@ -1,0 +1,10 @@
+/* html[data-theme=light] iframe.blend {
+    background: transparent; 
+    mix-blend-mode: darken;
+}
+
+html[data-theme=dark] iframe.blend:not(dark-light) {
+    filter: invert(1) hue-rotate(180deg) saturate(1.5);
+    background: transparent; 
+    mix-blend-mode: lighten;
+} */

@@ -20,4 +20,3 @@ teachbooks-sphinx-grasple
 sphinx-tudelft-theme
 teachbooks-sphinx-tippy
 sphinx-named-colors
-git+https://github.com/TeachBooks/Sphinx-TUDelft-theme.git

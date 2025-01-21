@@ -10,3 +10,40 @@
 | Book size limits | 1 GB for all branches 📚 | 150 MB per book 📕 |
 | GitHub Desktop | Well integrated 😎 | Basic integration 🙂 |
 | Utteranc.es | Can be linked to same repository 🏷️ | Requires GitHub repository next to GitLab repository 🏷️🏷️|
+
+# Iframe stuff
+
+## Inline
+
+**Default**
+::::{iframe} https://tudelft.h5p.com/content/1292011179114024347/embed
+::::
+
+**Force blend**
+::::{iframe} https://tudelft.h5p.com/content/1292011179114024347/embed
+:class: blend
+::::
+
+**Force no-blend**
+::::{iframe} https://tudelft.h5p.com/content/1292011179114024347/embed
+:class: no-blend
+::::
+
+## Admonition
+
+:::{exercise} Default
+::::{iframe} https://tudelft.h5p.com/content/1292011179114024347/embed
+::::
+:::
+
+:::{exercise} Force blend
+::::{iframe} https://tudelft.h5p.com/content/1292011179114024347/embed
+:class: blend
+::::
+:::
+
+:::{exercise} Force no-blend
+::::{iframe} https://tudelft.h5p.com/content/1292011179114024347/embed
+:class: no-blend
+::::
+:::

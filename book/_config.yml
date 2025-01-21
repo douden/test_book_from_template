@@ -11,8 +11,11 @@ html:
 
 sphinx:
   config:
+    # iframe_h5p_autowidth: true
+    iframe_blend_all: false
+    iframe_saturation: 1.0
     html_logo: figures/TB_logo.png
-    inverter_all: false
+    # inverter_all: true
     tud_change_logo: false
     named_colors_custom_colors: {'onlylight':[165,21,160],'lightanddark':[45,180,117,204,158,110]}
     html_static_path : ["figures"]
@@ -41,6 +44,7 @@ sphinx:
     html_last_updated_fmt: '%B %-d, %Y'
   local_extensions:
     applet: _ext/
+    sphinx_iframe: _ext/
   extra_extensions:
     - jupyterbook_patches
     - download_link_replacer
@@ -53,7 +57,7 @@ sphinx:
     - sphinx_tudelft_theme
     - teachbooks_sphinx_tippy
     - sphinx_named_colors
-    - sphinx_image_inverter
+    # - sphinx_image_inverter
 
 bibtex_bibfiles: 
   - references.bib
