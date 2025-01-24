@@ -33,8 +33,8 @@ To clearly show the blending and sizing, we showcase everthing in a general titl
 
 General directive sets by default
 
-- `width` to `80%` of the element in which the iframe is loaded;
-- `aspect-ratio` to `2 / 1`.
+- `width` to `100% - 2.8rem` of the element in which the iframe is loaded;
+- `aspect-ratio` to `auto 2 / 1`.
 - blending with the background to the chosen default.
 
 `````md
@@ -149,11 +149,10 @@ This extension does not check the validity of the given options, nor checks whet
 
 ### Styling aspects
 
-The style of the shown iframe can be controlled with the option:
+The style of the shown iframe can be controlled with two options:
 
-- `style`: Sets the style of the iframe. Use CSS compatible strings. Include surround with `" "`.
-
-This option will be applied to the `iframe` element.
+- `styleframe`: Sets the style of the iframe. Use CSS compatible strings. Include surround with `" "`.
+- `stylediv`: Sets the style of surrounding div. Use CSS compatible strings. Include surround with `" "`.
 
 ::::{note}
 Using CSS is complicated and error prone, so always check and never expect that you get what you want.
@@ -164,23 +163,53 @@ This extension does not check the validity of the given option.
 ::::
 
 `````md
-````{admonition} Height and aspect ratio
+````{admonition} iframe styling
 ```{iframe} ./some_content/element_pdf_and_cdf.html
-:style: "border-style: dotted !important;border-color: #0047AB !important;border-width:5px !important;"
+:styleframe: "border-style: dotted;border-color: #0047AB;border-width:5px;"
 ```
 ````
 `````
 
-````{admonition} Height and aspect ratio
+````{admonition} iframe styling
 ```{iframe} ./some_content/element_pdf_and_cdf.html
-:style: "border-style: dotted !important;border-color: #0047AB !important;border-width:5px !important;"
+:styleframe: "border-style: dotted;border-color: #0047AB;border-width:5px;"
+```
+````
+
+`````md
+````{admonition} div styling
+```{iframe} ./some_content/element_pdf_and_cdf.html
+:stylediv: "border-style: dashed;border-color: olive;border-width:20px;"
+```
+````
+`````
+
+````{admonition} div styling
+```{iframe} ./some_content/element_pdf_and_cdf.html
+:stylediv: "border-style: dashed;border-color: olive;border-width:20px;"
+```
+````
+
+`````md
+````{admonition} iframe and div styling
+```{iframe} ./some_content/element_pdf_and_cdf.html
+:styleframe: "border-style: dotted;border-color: #0047AB;border-width:5px;"
+:stylediv: "border-style: dashed;border-color: olive;border-width:20px;"
+```
+````
+`````
+
+````{admonition} iframe and div styling
+```{iframe} ./some_content/element_pdf_and_cdf.html
+:styleframe: "border-style: dotted;border-color: #0047AB;border-width:5px;"
+:stylediv: "border-style: dashed;border-color: olive;border-width:20px;"
 ```
 ````
 
 
 ## Special directives
 
-**h5p**
+### h5p
 
 For iframes intended for h5p elements, the code
 
@@ -209,7 +238,7 @@ resulting in
 ```
 ````
 
-**video**
+### video
 
 For iframes intended for videos, the code
 
@@ -217,7 +246,8 @@ For iframes intended for videos, the code
 ````{admonition} video example
 ```{iframe} https://www.youtube.com/embed/B1J6Ou4q8vE?si=XZDT83fcR6W3Dxut
 :class: no-blend
-:aspectratio: 16 / 9
+:styleframe: "background: transparent;"
+:aspectratio: auto 16 / 9
 ```
 ````
 `````
