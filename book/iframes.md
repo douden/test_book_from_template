@@ -10,32 +10,55 @@ Using CSS is complicated and error prone, so always check and never expect that 
 
 ## Configuration choices
 
+The extension provides some configuration values, which can be added to:
+
+```yaml
+sphinx: 
+    config:
+        .
+        .
+        .
+        iframe_blend_all: true # default value
+        iframe_saturation: 1.5 # default value
+        iframe_h5p_autoresize: true # default value
+        iframe_background: #ffffff # default value
+        .
+        .
+        .
+```
+
 - `iframe_blend_all`: `true` (_default_) or `false`:
   - if `true` all iframes are by default blended with the background and in dark-mode also inverted.
   - if `false` all non-blended iframes will have background a (by default) white background and no inversion for dark-mode are applied.
+  - there's no need to set the blend for individual iframes if it's set in the `_config.yml`, unless you want to deviate from the setting set there.
 - `iframe_saturation`: `1.5` (_default_) or **float**:
   - Blended iframes are inverted in darkmode using the CSS filter `invert(1) hue-rotate(180deg) saturation(iframe_saturation)`.
 - `iframe_h5p_autoresize`: `true` (_default_) or `false`:
   - if `true` all h5p iframes are automagically resized to fit the element in which the iframe is loaded.
   - if `false` no h5p iframes are automagically resized to fit the element in which the iframe is loaded.
-- `iframe_background`: `#ffffff` or **color string**:
+- `iframe_background`: `#ffffff` (_default_) or **color string**:
   - sets the background color of non-blended iframes.
   - Any CSS accepted color string can be used.
 
 
 ## General directive
 
-For use inline or in other directives and admonitions.
-
 To clearly show the blending and sizing, we showcase everthing in a general titled admonition.
 
 ### Default behavior
 
-General directive sets by default
+For use inline or in other directives and admonitions, iframes can be added using the following syntax:
 
+````md
+```{iframe} <link_to_webpage_to_embed>
+```
+````
+
+By default, the following is chosen (which can be adapted):
 - `width` to `100% - 2.8rem` of the element in which the iframe is loaded;
 - `aspect-ratio` to `auto 2 / 1`.
-- blending with the background to the chosen default.
+
+For example:
 
 `````md
 ````{admonition} Default
