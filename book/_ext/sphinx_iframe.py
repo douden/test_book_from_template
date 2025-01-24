@@ -17,13 +17,13 @@ def generate_style(width: Optional[str], height: Optional[str],aspectratio: Opti
      styles = ''
 
      if width:
-          styles += f'width: {width};'
+          styles += f'width: {width} !important;'
 
      if height:
-          styles += f'height: {height};'
+          styles += f'height: {height} !important;'
      
      if aspectratio:
-          styles += f'aspect-ratio: {aspectratio};'
+          styles += f'aspect-ratio: {aspectratio} !important;'
 
      return styles
 
@@ -36,7 +36,8 @@ class IframeDirective(SphinxDirective):
         'class': directives.class_option,
         "height": directives.unchanged,
         "width": directives.unchanged,
-        "aspectratio": directives.unchanged
+        "aspectratio": directives.unchanged,
+        "style": directives.unchanged
     }
 
     def run(self) -> list[nodes.Node]:
@@ -71,15 +72,14 @@ class IframeDirective(SphinxDirective):
         )
         if style != '':
             style = 'style="%s"'%(style)
-
-        iframe_html = f"""
-            <iframe class="{iframe_class}" {style} src="{self.arguments[0]}" allow="fullscreen *;autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *" frameborder="0"></iframe>
-		"""
+        frame_style = self.options.get("style",None)
+        if frame_style is not None:
+            frame_style = 'style="%s"'%(frame_style)
 
         if self.name == "video":
              iframe_html = '<div class="video-container" %s>\n'%(style)
              iframe_html += f"""
-                 <iframe class="{iframe_class}" src="{self.arguments[0]}" allow="fullscreen *;autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *" frameborder="0"></iframe>
+                 <iframe class="{iframe_class}" {frame_style} src="{self.arguments[0]}" allow="fullscreen *;autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *" frameborder="0"></iframe>
 		     """
              iframe_html += '\n</div>'
         elif self.name == 'h5p':
@@ -89,7 +89,7 @@ class IframeDirective(SphinxDirective):
         else:
              iframe_html = '<div class="iframe-container" %s>\n'%(style)
              iframe_html += f"""
-                 <iframe class="{iframe_class}" src="{self.arguments[0]}" allow="fullscreen *;autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *" frameborder="0"></iframe>
+                 <iframe class="{iframe_class}" {frame_style} src="{self.arguments[0]}" allow="fullscreen *;autoplay *; geolocation *; microphone *; camera *; midi *; encrypted-media *" frameborder="0"></iframe>
 		     """
              iframe_html += '\n</div>'
 
@@ -127,7 +127,10 @@ def setup(app: Sphinx):
 
 def write_css(app: Sphinx,exc):
     # now set the CSS
-    CSS_content = ''
+    CSS_content = "div.video-container {\n\twidth: 95%;\n\taspect-ratio: 16 / 9;\n\tbox-sizing: border-box;\n\tmargin: 0 !important;\n\tpadding: 0 !important;\n}\n\n"
+    CSS_content += "iframe.sphinx.video {\n\twidth: 100%;\n\theight: 100%;\n\tbox-sizing: border-box;\n\tmargin: 0 !important;\n\tpadding: 0 !important;\n}\n\n"
+    CSS_content += "div.iframe-container {\n\twidth: 95%;\n\taspect-ratio: 2 / 1;\n\tbox-sizing: border-box;\n\tmargin: 0 !important;\n\tpadding: 0 !important;\n}\n\n"
+    CSS_content += "div.iframe-container > iframe {\n\twidth: 100%;height: 100%;\n\tbox-sizing: border-box;\n\tmargin: 0 !important;padding: 0 !important;\n}\n\n"
     
     # add blend or no-blend option if required
     if app.config.iframe_blend_all:

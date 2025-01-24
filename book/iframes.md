@@ -1,5 +1,13 @@
 # Iframe stuff
 
+## Introduction
+
+This extension provides an interface to include iframes with relative ease, but does try to provide manners to interact with the various options. This rests purely by setting default CSS values, that the user can overwrite if preferred. In general, each `iframe` is embedded within a `div` element, which eases sizing. 
+
+::::{note}
+Using CSS is complicated and error prone, so always check and never expect that you get what you want.
+::::
+
 ## Configuration choices
 
 - `iframe_blend_all`: `true` (_default_) or `false`:
@@ -10,8 +18,8 @@
 - `iframe_h5p_autoresize`: `true` (_default_) or `false`:
   - if `true` all h5p iframes are automagically resized to fit the element in which the iframe is loaded.
   - if `false` no h5p iframes are automagically resized to fit the element in which the iframe is loaded.
-- `iframe_bkacground`: `#ffffff` or **color string**:
-  - sets the color of non-blended iframes.
+- `iframe_background`: `#ffffff` or **color string**:
+  - sets the background color of non-blended iframes.
   - Any CSS accepted color string can be used.
 
 
@@ -21,7 +29,7 @@ For use inline or in other directives and admonitions.
 
 To clearly show the blending and sizing, we showcase everthing in a general titled admonition.
 
-**Default**
+### Default behavior
 
 General directive sets by default
 
@@ -41,7 +49,7 @@ General directive sets by default
 ```
 ````
 
-**Blending**
+### Blending
 
 Blending can be enable or disable by using the classes `blend` and `no-blend`:
 
@@ -73,16 +81,22 @@ Blending can be enable or disable by using the classes `blend` and `no-blend`:
 ```
 ````
 
-**Size aspects**
+### Sizing aspects
 
-The size of the shown iframe can be controlled with two out the following three options:
+The size of the shown iframe can be controlled with atmost two out the following three options:
 
-- `width`: Sets the with of the iframe. Use CSS compatible strings.
-- `height`: Sets the with of the iframe. Use CSS compatible strings.
+- `width`: Sets the width of the iframe. Use CSS compatible strings.
+- `height`: Sets the height of the iframe. Use CSS compatible strings.
 - `aspectratio`: Sets the aspect ratio of the iframe. Use CSS compatible strings.
+
+These options will be applied to the encapsulating `div` element.
 
 ::::{note}
 Using CSS is complicated and error prone, so always check and never expect that you get what you want.
+::::
+
+::::{warning}
+This extension does not check the validity of the given options, nor checks whether at most two options are entered.
 ::::
 
 `````md
@@ -132,6 +146,37 @@ Using CSS is complicated and error prone, so always check and never expect that 
 :aspectratio: 2 / 2
 ```
 ````
+
+### Styling aspects
+
+The style of the shown iframe can be controlled with the option:
+
+- `style`: Sets the style of the iframe. Use CSS compatible strings. Include surround with `" "`.
+
+This option will be applied to the `iframe` element.
+
+::::{note}
+Using CSS is complicated and error prone, so always check and never expect that you get what you want.
+::::
+
+::::{warning}
+This extension does not check the validity of the given option.
+::::
+
+`````md
+````{admonition} Height and aspect ratio
+```{iframe} ./some_content/element_pdf_and_cdf.html
+:style: "border-style: dotted !important;border-color: #0047AB !important;border-width:5px !important;"
+```
+````
+`````
+
+````{admonition} Height and aspect ratio
+```{iframe} ./some_content/element_pdf_and_cdf.html
+:style: "border-style: dotted !important;border-color: #0047AB !important;border-width:5px !important;"
+```
+````
+
 
 ## Special directives
 
