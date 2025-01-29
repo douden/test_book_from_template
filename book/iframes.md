@@ -232,7 +232,7 @@ This extension does not check the validity of the given option.
 
 ## Special directives
 
-### h5p
+### h5p TU Delft
 
 For iframes intended for h5p elements, the code
 
@@ -288,5 +288,12 @@ resulting in
 
 ````{admonition} video example
 ```{video} https://www.youtube.com/embed/B1J6Ou4q8vE?si=XZDT83fcR6W3Dxut
+```
+````
+
+### h5p niet TU Delft
+
+````{admonition} h5p example
+```{h5p} https://home.teachbooks.io/wp-admin/admin-ajax.php?action=h5p_embed&id=2
 ```
 ````
