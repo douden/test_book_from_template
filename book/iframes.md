@@ -1,16 +1,52 @@
-# Iframe stuff
+# Sphinx extension: Iframes
 
 ## Introduction
 
-This extension provides an interface to include iframes with relative ease, but does try to provide manners to interact with the various options. This rests purely by setting default CSS values, that the user can overwrite if preferred. In general, each `iframe` is embedded within a `div` element, which eases sizing. 
+This extension provides an interface to include iframes with relative ease, but does try to provide manners to interact with the various options. This rests purely by setting default CSS values, that the user can overwrite if preferred for individual iframes, but also globally. In general, each `iframe` is embedded within a `div` element, which eases sizing.
 
 ::::{note}
 Using CSS is complicated and error prone, so always check and never expect that you get what you want.
 ::::
 
-## Configuration choices
+## What does it do?
 
-The extension provides some configuration values, which can be added to `_config.yml`:
+This extension provides three Sphinx directives (`iframe`, `h5p`and `video`) that can be used to quickly insert an iframe with standard sizing and styling.
+
+## Installation
+To use this extenstion, follow these steps:
+
+**Step 1: Install the Package**
+
+Install the module `sphinx-iframes` package using `pip`:
+```
+pip install git+https://github.com/TeachBooks/sphinx-iframes.git
+```
+    
+**Step 2: Add to `requirements.txt`**
+
+Make sure that the package is included in your project's `requirements.txt` to track the dependency:
+```
+git+https://github.com/TeachBooks/sphinx-iframes.git
+```
+
+**Step 3: Enable in `_config.yml`**
+
+In your `_config.yml` file, add the extension to the list of Sphinx extra extensions (**important**: underscore, not dash this time):
+```
+sphinx: 
+    extra_extensions:
+        .
+        .
+        .
+        - sphinx_iframes
+        .
+        .
+        .
+```
+
+## Configuration
+
+The extension provides several configuration values, which can be added to `_config.yml`:
 
 ```yaml
 sphinx: 
