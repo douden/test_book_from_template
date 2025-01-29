@@ -112,7 +112,7 @@ class IframeDirective(SphinxDirective):
 def include_js(app: Sphinx):
      
      if app.config.iframe_h5p_autoresize:
-          app.add_js_file("https://tudelft.h5p.com/js/h5p-resizer.js") # to support auto-width for h5p
+          app.add_js_file("h5p-resizer.js") # to support auto-width for h5p
 
      return
 
@@ -125,9 +125,11 @@ def setup(app: Sphinx):
     app.add_config_value("iframe_h5p_autoresize",True,'env')
     app.connect('builder-inited',include_js)
 
-    app.add_config_value("iframe_blend_all",True,'env')
+    app.add_config_value("iframe_blend",True,'env')
     app.add_config_value("iframe_saturation",1.5,'env')
     app.add_config_value("iframe_background","#ffffff",'env')
+    app.add_config_value("iframe_width","calc(100% - 2.8rem)",'env')
+    app.add_config_value("iframe_aspectratio","auto 2 / 1",'env')
     
     app.add_css_file('sphinx_iframe.css')
 
@@ -137,13 +139,13 @@ def setup(app: Sphinx):
 
 def write_css(app: Sphinx,exc):
     # now set the CSS
-    CSS_content = "div.video-container {\n\twidth: calc(100% - 2.8rem);\n\taspect-ratio: auto 16 / 9;\n\tbox-sizing: border-box;\n}\n\n"
+    CSS_content = "div.video-container {\n\twidth: %s;\n\taspect-ratio: auto 16 / 9;\n\tbox-sizing: border-box;\n}\n\n"%(app.config.iframe_width)
     CSS_content += "iframe.sphinx.video {\n\twidth: 100%;\n\theight: 100%;\n\tbox-sizing: border-box;\n}\n\n"
-    CSS_content += "div.iframe-container {\n\twidth: calc(100% - 2.8rem);\n\taspect-ratio: auto 2 / 1;\n\tbox-sizing: border-box;\n}\n\n"
+    CSS_content += "div.iframe-container {\n\twidth: %s;\n\taspect-ratio: %s;\n\tbox-sizing: border-box;\n}\n\n"%(app.config.iframe_width,app.config.iframe_aspectratio)
     CSS_content += "div.iframe-container > iframe:not(.h5p) {\n\twidth: 100%;\n\theight: 100%;\n\tbox-sizing: border-box;\n}\n\n"
     
     # add blend or no-blend option if required
-    if app.config.iframe_blend_all:
+    if app.config.iframe_blend:
         CSS_content += "iframe.sphinx:not(.no-blend) {\n\tbackground: transparent;\n\tmix-blend-mode: darken;\n}\n\n" # blend all except no-blend
         CSS_content += "html[data-theme=dark] iframe.sphinx:not(.no-blend) {\n\tfilter: invert(1) hue-rotate(180deg) saturate(%s);\n\tbackground: transparent;\n\tmix-blend-mode: lighten;\n}\n\n"%(app.config.iframe_saturation) # blend all except no-blend
         CSS_content += "iframe.sphinx.no-blend:not(.video) {\n\tbackground: %s;\n\tborder-radius: .25rem;\n}\n\n"%(app.config.iframe_background)

@@ -10,36 +10,43 @@ Using CSS is complicated and error prone, so always check and never expect that 
 
 ## Configuration choices
 
-The extension provides some configuration values, which can be added to:
+The extension provides some configuration values, which can be added to `_config.yml`:
 
 ```yaml
 sphinx: 
     config:
-        .
-        .
-        .
-        iframe_blend_all: true # default value
+        -
+        -
+        -
+        iframe_blend: true # default value
         iframe_saturation: 1.5 # default value
         iframe_h5p_autoresize: true # default value
         iframe_background: #ffffff # default value
-        .
-        .
-        .
+        iframe_width: calc(100% - 2.8rem) # default value
+        iframe_aspectratio: auto 2 / 1 #default value
+        -
+        -
+        -
 ```
 
-- `iframe_blend_all`: `true` (_default_) or `false`:
-  - if `true` all iframes are by default blended with the background and in dark-mode also inverted.
-  - if `false` all non-blended iframes will have background a (by default) white background and no inversion for dark-mode are applied.
-  - there's no need to set the blend for individual iframes if it's set in the `_config.yml`, unless you want to deviate from the setting set there.
+- `iframe_blend`: `true` (_default_) or `false`:
+  - if `true` all iframes are standard blended with the background and in dark-mode also inverted.
+  - if `false` all non-blended iframes will have background a colored background and no inversion for dark-mode is applied.
+  - there's no need to set the blend or no-blend for individual iframes if it's set in the `_config.yml`, unless you want to deviate from the setting set there.
 - `iframe_saturation`: `1.5` (_default_) or **float**:
   - Blended iframes are inverted in darkmode using the CSS filter `invert(1) hue-rotate(180deg) saturation(iframe_saturation)`.
 - `iframe_h5p_autoresize`: `true` (_default_) or `false`:
   - if `true` all h5p iframes are automagically resized to fit the element in which the iframe is loaded.
   - if `false` no h5p iframes are automagically resized to fit the element in which the iframe is loaded.
-- `iframe_background`: `#ffffff` (_default_) or **color string**:
-  - sets the background color of non-blended iframes.
-  - Any CSS accepted color string can be used.
-
+- `iframe_background`: `#ffffff` (_default_) or **CSS string**:
+  - sets the standard background color of non-blended iframes.
+  - Any CSS string defining colors can be used, see [<color> CSS data type](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value).
+- `iframe_width`:  `calc(100% - 2.8rem)` (_default_) or **CSS string**:
+  - sets the standard width of the iframe within the parent element;
+  - Any CSS string defining a width can be used, see [width CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/width).
+- `iframe_aspectratio`: `auto 2 / 1` (_default_) or **CSS string**:
+  - sets the standard aspect ration of the iframe within the parent element;
+  - Any CSS string defining an aspect ratio can be used, see [aspect-ratio CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio).
 
 ## General directive
 
@@ -53,10 +60,6 @@ For use inline or in other directives and admonitions, iframes can be added usin
 ```{iframe} <link_to_webpage_to_embed>
 ```
 ````
-
-By default, the following is chosen (which can be adapted):
-- `width` to `100% - 2.8rem` of the element in which the iframe is loaded;
-- `aspect-ratio` to `auto 2 / 1`.
 
 For example:
 
@@ -74,7 +77,7 @@ For example:
 
 ### Blending
 
-Blending can be enable or disable by using the classes `blend` and `no-blend`:
+Blending can be enabled or disabled by using the classes `blend` and `no-blend`:
 
 `````md
 ````{admonition} Enable blending
@@ -288,12 +291,5 @@ resulting in
 
 ````{admonition} video example
 ```{video} https://www.youtube.com/embed/B1J6Ou4q8vE?si=XZDT83fcR6W3Dxut
-```
-````
-
-### h5p niet TU Delft
-
-````{admonition} h5p example
-```{h5p} https://home.teachbooks.io/wp-admin/admin-ajax.php?action=h5p_embed&id=2
 ```
 ````
