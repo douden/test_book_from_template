@@ -16,6 +16,7 @@ sphinx:
     # iframe_saturation: 1.0
     # iframe_width: 50%
     # iframe_aspectratio: 1/1
+    # iframe_background: "#abcdef"
     html_logo: figures/TB_logo.png
     # inverter_all: true
     tud_change_logo: false

@@ -1,5 +1,12 @@
 # Sphinx extension: Iframes
 
+```{admonition} User types
+:class: tip
+This section is useful for user type 3-5.
+```
++++
+{bdg-primary}`Sphinx Extension`
+
 ## Introduction
 
 This extension provides an interface to include iframes with relative ease, but does try to provide manners to interact with the various options. This rests purely by setting default CSS values, that the user can overwrite if preferred for individual iframes, but also globally. In general, each `iframe` is embedded within a `div` element, which eases sizing.
@@ -54,12 +61,12 @@ sphinx:
         -
         -
         -
-        iframe_blend: true # default value
-        iframe_saturation: 1.5 # default value
+        iframe_blend:          true # default value
+        iframe_saturation:     1.5 # default value
         iframe_h5p_autoresize: true # default value
-        iframe_background: #ffffff # default value
-        iframe_width: calc(100% - 2.8rem) # default value
-        iframe_aspectratio: auto 2 / 1 #default value
+        iframe_background:     "#ffffff" # default value
+        iframe_width:          calc(100% - 2.8rem) # default value
+        iframe_aspectratio:    auto 2 / 1 # default value
         -
         -
         -
@@ -74,9 +81,11 @@ sphinx:
 - `iframe_h5p_autoresize`: `true` (_default_) or `false`:
   - if `true` all h5p iframes are automagically resized to fit the element in which the iframe is loaded.
   - if `false` no h5p iframes are automagically resized to fit the element in which the iframe is loaded.
-- `iframe_background`: `#ffffff` (_default_) or **CSS string**:
+- `iframe_background`: `"#ffffff"` (_default_) or **CSS string**:
   - sets the standard background color of non-blended iframes.
   - Any CSS string defining colors can be used, see [<color> CSS data type](https://developer.mozilla.org/en-US/docs/Web/CSS/color_value).
+  - Surround with `" "` for hex strings.
+  - Only visible if the content of the iframes has a transparant background. 
 - `iframe_width`:  `calc(100% - 2.8rem)` (_default_) or **CSS string**:
   - sets the standard width of the iframe within the parent element;
   - Any CSS string defining a width can be used, see [width CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/width).
@@ -84,11 +93,53 @@ sphinx:
   - sets the standard aspect ration of the iframe within the parent element;
   - Any CSS string defining an aspect ratio can be used, see [aspect-ratio CSS property](https://developer.mozilla.org/en-US/docs/Web/CSS/aspect-ratio).
 
-## General directive
+## Provided code
+
+### Directives
+
+Three new directives are provided:
+
+````md
+```{iframe} <link_to_webpage_to_embed>
+```
+````
+
+````md
+```{h5p} <link_to_h5p_webpage_to_embed>
+```
+````
+
+````md
+```{video} <link_to_video_to_embed>
+```
+````
+
+Note that you don't need the full embed code of an iframe. Only the source url should be used.
+
+All of these have the following options:
+
+- `:class:`
+  - If further CSS styling is needed, then use this option to append a CSS class name to the rendered iframe.
+  - We recommend to only use the classes `blend` and `no-blend`, see [](sec:iframes:examples).
+- `:width:`
+  - Sets the width of the iframe. Use CSS compatible strings.
+- `:height:`
+  - Sets the width of the iframe. Use CSS compatible strings.
+- `:aspectratio:`
+  - Sets the width of the iframe. Use CSS compatible strings.
+- `:styleframe:`
+  - Sets the style of the iframe. Use CSS compatible strings. Surround with " ".
+- `:stylediv:`
+  - Sets the style of the surrounding div. Use CSS compatible strings. Surround with " ".
+
+(sec:iframes:examples)=
+## Examples and details
+
+### `iframe` directive
 
 To clearly show the blending and sizing, we showcase everthing in a general titled admonition.
 
-### Default behavior
+#### Default behavior
 
 For use inline or in other directives and admonitions, iframes can be added using the following syntax:
 
@@ -111,7 +162,7 @@ For example:
 ```
 ````
 
-### Blending
+#### Blending
 
 Blending can be enabled or disabled by using the classes `blend` and `no-blend`:
 
@@ -143,7 +194,7 @@ Blending can be enabled or disabled by using the classes `blend` and `no-blend`:
 ```
 ````
 
-### Sizing aspects
+#### Sizing aspects
 
 The size of the shown iframe can be controlled with atmost two out the following three options:
 
@@ -209,7 +260,7 @@ This extension does not check the validity of the given options, nor checks whet
 ```
 ````
 
-### Styling aspects
+#### Styling aspects
 
 The style of the shown iframe can be controlled with two options:
 
@@ -268,15 +319,12 @@ This extension does not check the validity of the given option.
 ```
 ````
 
+### `h5p` directive
 
-## Special directives
-
-### h5p TU Delft
-
-For iframes intended for h5p elements, the code
+For iframes intended for H5P elements, the code
 
 `````md
-````{admonition} h5p example
+````{admonition} H5P example
 ```{iframe} https://tudelft.h5p.com/content/1292011179114024347/embed
 :class: blend
 :aspectratio: auto
@@ -287,7 +335,7 @@ For iframes intended for h5p elements, the code
 can be reduced to
 
 `````md
-````{admonition} h5p example
+````{admonition} H5P example
 ```{h5p} https://tudelft.h5p.com/content/1292011179114024347/embed
 ```
 ````
@@ -295,12 +343,14 @@ can be reduced to
 
 resulting in
 
-````{admonition} h5p example
+````{admonition} H5P example
 ```{h5p} https://tudelft.h5p.com/content/1292011179114024347/embed
 ```
 ````
 
-### video
+Note that you don't need the full embed code as provided by H5P. Only the source url (often with the following syntax `https://<h5p_host_server>/content/<h5p_element_id>/embed`) should be used. This url can be obtained from the url in your H5P application with an addtional `/embed`, or in the html-embed-code.
+
+### `video` directive
 
 For iframes intended for videos, the code
 
@@ -329,3 +379,9 @@ resulting in
 ```{video} https://www.youtube.com/embed/B1J6Ou4q8vE?si=XZDT83fcR6W3Dxut
 ```
 ````
+
+## Contribute
+
+This tool's repository is stored on [GitHub](https://github.com/TeachBooks/sphinx-iframes). If you'd like to contribute, you can create a fork and open a pull request on the [GitHub repository](https://github.com/TeachBooks/sphinx-iframes).
+
+The `README.md` of the branch `Manual` is also part of the [TeachBooks manual](https://teachbooks.io/manual/intro.html) as a submodule.
