@@ -300,6 +300,8 @@ resulting in
 ```
 ````
 
+Note that you don't need the full embed code as provided by H5p. Only the source url (`src="https://<h5p_host_server>/content/<h5p_element_id>/embed"`) should be used. This url can be obtained from the url in your H5p application with an addtional `/embed`, or in the html-embed-cdoe.
+
 ### video
 
 For iframes intended for videos, the code
