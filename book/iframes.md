@@ -17,7 +17,14 @@ Using CSS is complicated and error prone, so always check and never expect that 
 
 ## What does it do?
 
-This extension provides three Sphinx directives (`iframe`, `h5p`and `video`) that can be used to quickly insert an iframe with standard sizing and styling.
+This extension provides several Sphinx directives:
+
+- `iframe`
+- `h5p`
+- `video`
+- `iframe-figure`
+
+ that can be used to quickly insert an iframe with standard sizing and styling.
 
 ## Installation
 To use this extenstion, follow these steps:
@@ -97,7 +104,7 @@ sphinx:
 
 ### Directives
 
-Three new directives are provided:
+The following new directives are provided:
 
 ````md
 ```{iframe} <link_to_webpage_to_embed>
@@ -111,6 +118,14 @@ Three new directives are provided:
 
 ````md
 ```{video} <link_to_video_to_embed>
+```
+````
+
+````md
+```{iframe-figure} <link_to_webpage_to_embed>
+:name: some:label
+
+The caption for the iframe.
 ```
 ````
 
@@ -131,6 +146,8 @@ All of these have the following options:
   - Sets the style of the iframe. Use CSS compatible strings. Surround with " ".
 - `:stylediv:`
   - Sets the style of the surrounding div. Use CSS compatible strings. Surround with " ".
+
+The directive `iframe-figure` also inherits all options from the `figure` directive from Sphinx.
 
 (sec:iframes:examples)=
 ## Examples and details
@@ -379,6 +396,24 @@ resulting in
 ```{video} https://www.youtube.com/embed/B1J6Ou4q8vE?si=XZDT83fcR6W3Dxut
 ```
 ````
+
+### `iframe-figure` directive
+
+In {numref}`some:label` you can find the result of the below code. The reference is made using `{numref}` and label behind `:name:`.
+
+`````md
+````{iframe-figure} ./some_content/element_pdf_and_cdf.html
+:name: some:label
+
+The caption for the iframe.
+````
+`````
+
+```{iframe-figure} ./some_content/element_pdf_and_cdf.html
+:name: some:label
+ 
+The caption for the iframe.
+```
 
 ## Contribute
 
