@@ -392,8 +392,33 @@ can be reduced to
 
 resulting in
 
-````{admonition} video example
-```{video} https://www.youtube.com/embed/B1J6Ou4q8vE?si=XZDT83fcR6W3Dxut
+````{admonition} video example (embed+channel)
+```{video} https://www.youtube.com/embed/B1J6Ou4q8vE?ab_channel=AlanBecker
+```
+````
+
+````{admonition} video example (watch)
+```{video} https://www.youtube.com/watch?v=B1J6Ou4q8vE
+```
+````
+
+````{admonition} video example (watch+time)
+```{video} https://www.youtube.com/watch?v=B1J6Ou4q8vE&t=79
+```
+````
+
+````{admonition} video example (watch+channel)
+```{video} https://www.youtube.com/watch?v=B1J6Ou4q8vE&ab_channel=AlanBecker
+```
+````
+
+````{admonition} video example (watch+channel+time)
+```{video} https://www.youtube.com/watch?v=B1J6Ou4q8vE&ab_channel=AlanBecker&t=101
+```
+````
+
+````{admonition} video example (short link)
+```{video} https://youtu.be/B1J6Ou4q8vE?feature=shared&t=102
 ```
 ````
 
