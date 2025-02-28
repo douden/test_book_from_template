@@ -417,8 +417,8 @@ resulting in
 ```
 ````
 
-````{admonition} video example (short link)
-```{video} https://youtu.be/B1J6Ou4q8vE?feature=shared&t=102
+````{admonition} video example (list)
+```{video}  https://www.youtube.com/watch?v=yGuWxu9XWoUlist=PLyXAaocQQ2XbCFh50vrIwm82aPfzBJBvp&index=13
 ```
 ````
 
