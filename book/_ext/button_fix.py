@@ -27,23 +27,30 @@ def remove_js_fix(app: Sphinx, exc):
     for dirpath, dirnames, filenames in os.walk(sourcedir):
         for filename in filenames:
             if filename.endswith('.ipynb'):
-                files.append(os.path.join(dirpath.replace('\\_sources',''), filename.replace('.ipynb','.html')))
+                files.append(filename.replace('.ipynb','.html'))
     
-    # for each of the files, load all lines.
-    for file in files:
-        with open(file,'r') as html_code:
-            new_html_code = '<!-- HTML code rerendered -->'
-            comment_next_line = False
-            for line_number, line in enumerate(html_code, start=1):
-                if comment_next_line:
-                    new_html_code += '<!-- '+line[:-1]+' -->\n'
-                else:
-                    new_html_code += line
-                if '<!-- So that users can add custom icons -->' in line:
-                    comment_next_line = True
-                else:
+    print(files)
+    # for each of the build files, load files found and replace
+
+    for dirpath, dirnames, filenames in os.walk(builddir):
+        for file in filenames:
+            if file in files:
+                print(file)
+                file_location = os.path.join(dirpath,file)
+                print(file_location)
+                with open(file_location,'r') as html_code:
+                    new_html_code = '<!-- HTML code rerendered -->'
                     comment_next_line = False
-        # ovewwrite the html page
-        with open(file,'w') as new_file:
-            new_file.writelines(new_html_code)
+                    for line_number, line in enumerate(html_code, start=1):
+                        if comment_next_line:
+                            new_html_code += '<!-- '+line[:-1]+' -->\n'
+                        else:
+                            new_html_code += line
+                        if '<!-- So that users can add custom icons -->' in line:
+                            comment_next_line = True
+                        else:
+                            comment_next_line = False
+                # ovewwrite the html page
+                with open(file_location,'w') as new_file:
+                    new_file.writelines(new_html_code)
     pass
