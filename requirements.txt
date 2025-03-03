@@ -21,3 +21,5 @@ sphinx-tudelft-theme
 teachbooks-sphinx-tippy
 sphinx-named-colors
 sphinx-iframes
+sphinx-prime-applets
+git+https://github.com/TeachBooks/Sphinx-Thebe
