@@ -1,6 +1,6 @@
 # first list the packages you wish to download from PyPI
 teachbooks # depends on jupyter-book
-jupyterbook-patches
+# jupyterbook-patches
 sphinx-image-inverter
 download_link_replacer
 
@@ -23,3 +23,4 @@ sphinx-named-colors
 sphinx-iframes
 sphinx-prime-applets
 git+https://github.com/TeachBooks/Sphinx-Thebe
+git+https://github.com/TeachBooks/JupyterBook-Patches.git@matplotlib_buttons

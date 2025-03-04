@@ -45,8 +45,8 @@ sphinx:
         thebe: true
     html_show_copyright: false
     html_last_updated_fmt: '%B %-d, %Y'
-  local_extensions:
-    button_fix: _ext/
+  # local_extensions:
+    # button_fix: _ext/
   extra_extensions:
     - jupyterbook_patches
     - download_link_replacer
